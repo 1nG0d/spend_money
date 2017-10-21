@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import EditorInSpend from './editors/Editor_in_spend'
 
 class Root extends Component {
     static propTypes = {
@@ -7,7 +8,10 @@ class Root extends Component {
 
     render() {
         return (
-            <div>hello</div>
+            <div>
+                <h1>hello</h1>
+                <EditorInSpend/>
+            </div>
         )
     }
 }
