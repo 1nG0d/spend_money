@@ -7,8 +7,22 @@ import {fixtures} from '../fixtures'
 export const moduleName = 'editors'
 const prefix = `${appName}/${moduleName}`
 
-export const FETCH_ALL_REQUEST = `${prefix}/FETCH_ALL_REQUEST`
+export const EDIT_ROW_SPEND = `${prefix}/EDIT_ROW_SPEND`
 
+
+/**
+ * AC
+ * */
+
+
+export function editRowSpend(id) {
+    return {
+        type: EDIT_ROW_SPEND,
+        payload: {
+            id: id
+        }
+    }
+}
 
 
 /**
@@ -23,4 +37,10 @@ export default function reducer(state = fixtures, action) {
             return state
     }
 }
+
+
+
+
+
+
 

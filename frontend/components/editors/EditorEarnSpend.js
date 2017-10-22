@@ -10,7 +10,7 @@ import {
 } from 'material-ui/Table';
 import RaisedButton from 'material-ui/RaisedButton';
 
-class Editor_in_spend extends React.Component {
+class EditorEarnSpend extends React.Component {
 
     getTableRow() {
         return this.props.tableData.map((item, i)=>{
@@ -23,7 +23,11 @@ class Editor_in_spend extends React.Component {
                     <TableRowColumn style={{width: '20%'}}>{item.description}</TableRowColumn>
                     <TableRowColumn style={{width: '10%'}}>{item.category}</TableRowColumn>
                     <TableRowColumn style={{width: '10%'}}>
-                        <RaisedButton label="Edit" primary={true} />
+                        <RaisedButton label="Edit"
+                                      onClick={()=>{
+                                          console.log(item._id);
+                                      }}
+                                      primary={true} />
                     </TableRowColumn>
                     <TableRowColumn style={{width: '10%'}}>
                         <RaisedButton label="Delete" secondary={true}/>
@@ -61,4 +65,4 @@ class Editor_in_spend extends React.Component {
 
 export default connect((state)=>({
     tableData: state.editors
-}))(Editor_in_spend)
+}))(EditorEarnSpend)
