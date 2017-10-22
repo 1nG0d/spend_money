@@ -18,8 +18,24 @@ import {
 class EditorSpendEdit extends React.Component {
 
     state =  {
-      value: 1
+        typeValue: this.props.item.type,
+        amountValue: this.props.item.amount,
+        descriptionValue: this.props.item.description,
+        categoryValue: this.props.item.category
     };
+
+    handleSelector = (nameSelector) =>(event, key, value) => {
+            this.setState({
+                [nameSelector]: value
+            })
+    };
+
+    handleText = (nameSelector) =>(event, value) => {
+        this.setState({
+            [nameSelector]: value
+        })
+    };
+
 
     render() {
 
@@ -32,44 +48,50 @@ class EditorSpendEdit extends React.Component {
                                      selectable={false}
                                      adjustForCheckbox={false}>
                             <TableRow>
-                                <TableHeaderColumn style={{width: '12%'}}>Type</TableHeaderColumn>
-                                <TableHeaderColumn style={{width: '8%'}}>Amount</TableHeaderColumn>
+                                <TableHeaderColumn style={{width: '7%'}}>Type</TableHeaderColumn>
+                                <TableHeaderColumn style={{width: '12%'}}>Amount</TableHeaderColumn>
                                 <TableHeaderColumn style={{width: '6%'}}>Date</TableHeaderColumn>
-                                <TableHeaderColumn style={{width: '20%'}}>Description</TableHeaderColumn>
-                                <TableHeaderColumn style={{width: '10%'}}>Category</TableHeaderColumn>
+                                <TableHeaderColumn style={{width: '25%'}}>Description</TableHeaderColumn>
+                                <TableHeaderColumn style={{width: '7%'}}>Category</TableHeaderColumn>
                             </TableRow>
                         </TableHeader>
                         <TableBody displayRowCheckbox={false}>
                             <TableRow>
                                 <TableRowColumn style={{width: '7%'}}>
                                     <SelectField
-                                        value={this.state.value}
-                                        onChange={this.handleChange}>
-                                        <MenuItem value={1} primaryText="Spend"/>
-                                        <MenuItem value={2} primaryText="Earn"/>
+                                        value={this.state.typeValue}
+                                        name="type"
+                                        onChange={this.handleSelector('typeValue')}>
+                                        <MenuItem value="spend" primaryText="Spend"/>
+                                        <MenuItem value="earn" primaryText="Earn"/>
                                     </SelectField>
                                 </TableRowColumn>
                                 <TableRowColumn style={{width: '12%'}}>
                                     <TextField
+                                        onChange={this.handleText('amountValue')}
+                                        value={this.state.amountValue}
                                         hintText="enter a dollar amount"
-                                        name="description"
+                                        name="amount"
                                     />
                                 </TableRowColumn>
                                 <TableRowColumn style={{width: '6%'}}>date</TableRowColumn>
-                                <TableRowColumn style={{width: '20%'}}>
-                                    <TextField
+                                <TableRowColumn style={{width: '25%'}}>
+                                    <TextField style={{width: '100%'}}
+                                               onChange={this.handleText('descriptionValue')}
+                                        value={this.state.descriptionValue}
                                         hintText="please enter description"
                                         name="description"
                                     />
                                 </TableRowColumn>
                                 <TableRowColumn style={{width: '7%'}}>
                                     <SelectField
-                                        value={this.state.value}
-                                        onChange={this.handleChange}>
-                                        <MenuItem value={1} primaryText="Food"/>
-                                        <MenuItem value={2} primaryText="Entertainment"/>
-                                        <MenuItem value={2} primaryText="Sport"/>
-                                        <MenuItem value={2} primaryText="Alcohol"/>
+                                        name="category"
+                                        value={this.state.categoryValue}
+                                        onChange={this.handleSelector('categoryValue')}>
+                                        <MenuItem value="food" primaryText="Food"/>
+                                        <MenuItem value="entertainment" primaryText="Entertainment"/>
+                                        <MenuItem value="sport" primaryText="Sport"/>
+                                        <MenuItem value="alcohol" primaryText="Alcohol"/>
                                     </SelectField>
                                 </TableRowColumn>
                             </TableRow>
