@@ -1,5 +1,6 @@
 import {appName} from '../config'
 import {fixtures} from '../fixtures'
+import {arrToMap} from '../utils'
 
 /**
  * Constants
@@ -7,7 +8,8 @@ import {fixtures} from '../fixtures'
 export const moduleName = 'editors'
 const prefix = `${appName}/${moduleName}`
 
-export const EDIT_ROW_SPEND = `${prefix}/EDIT_ROW_SPEND`
+export const EDITOR_SPEND_EDIT_ROW = `${prefix}/EDITOR_SPEND_EDIT_ROW`
+export const EDITOR_SPEND_DELETE_ROW = `${prefix}/EDITOR_SPEND_DELETE_ROW`
 
 
 /**
@@ -15,9 +17,18 @@ export const EDIT_ROW_SPEND = `${prefix}/EDIT_ROW_SPEND`
  * */
 
 
-export function editRowSpend(id) {
+export function editorSpendEditRow(id) {
     return {
-        type: EDIT_ROW_SPEND,
+        type: EDITOR_SPEND_EDIT_ROW,
+        payload: {
+            id: id
+        }
+    }
+}
+
+export function editorSpendDeleteRow(id) {
+    return {
+        type: EDITOR_SPEND_DELETE_ROW,
         payload: {
             id: id
         }
@@ -28,13 +39,18 @@ export function editRowSpend(id) {
 /**
  * Reducer
  * */
-export default function reducer(state = fixtures, action) {
+export default function reducer(editorsState = arrToMap(fixtures), action) {
     const {type, payload} = action;
 
     switch (type) {
 
+        case EDITOR_SPEND_DELETE_ROW:
+            const tmpState = {...editorsState}
+            delete tmpState[payload.id]
+            return tmpState
+
         default:
-            return state
+            return editorsState
     }
 }
 

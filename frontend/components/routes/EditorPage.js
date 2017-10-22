@@ -1,7 +1,7 @@
 import React from 'react'
 import {Route, Link} from 'react-router-dom'
-import Editor_in_spend from '../editors/EditorEarnSpend'
-import Editor_Category from '../editors/EditorCategory'
+import EditorEarnSpend from '../editors/EditorEarnSpend'
+import EditorCategory from '../editors/EditorCategory'
 
 
 export default class EditorRoute extends React.Component {
@@ -22,8 +22,8 @@ export default class EditorRoute extends React.Component {
         return (
             <div>
                 {this.props.match.isExact ? this.getList() : null}
-                <Route path="/editors/spend_earn" component={Editor_in_spend}/>
-                <Route path="/editors/category" component={Editor_Category}/>
+                <Route path="/editors/spend_earn" component={EditorEarnSpend}/>
+                <Route path="/editors/category" component={EditorCategory}/>
             </div>
         )
     }
