@@ -6,6 +6,9 @@ import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import Paper from 'material-ui/Paper';
 import RaisedButton from 'material-ui/RaisedButton';
+import {editorSpendEditRow} from '../../ducks/editors'
+import Snackbar from 'material-ui/Snackbar';
+
 import {
     Table,
     TableBody,
@@ -21,7 +24,22 @@ class EditorSpendEdit extends React.Component {
         typeValue: this.props.item.type,
         amountValue: this.props.item.amount,
         descriptionValue: this.props.item.description,
-        categoryValue: this.props.item.category
+        categoryValue: this.props.item.category,
+        open: false
+    };
+
+    handleClick = () => {
+        this.props.editorSpendEditRow(
+            this.props.item._id,
+            this.state.typeValue,
+            this.state.amountValue,
+            this.state.descriptionValue,
+            this.state.categoryValue,
+            this.props.item.date)
+
+        this.setState({
+            open: true,
+        });
     };
 
     handleSelector = (nameSelector) =>(event, key, value) => {
@@ -36,9 +54,16 @@ class EditorSpendEdit extends React.Component {
         })
     };
 
+    handleRequestClose = () => {
+        this.setState({
+            open: false,
+        });
+    };
+
 
     render() {
 
+        console.log(this);
         return (
 
             <div>
@@ -100,11 +125,18 @@ class EditorSpendEdit extends React.Component {
                     <div style={{padding: "20px 0"}}>
                         <div style={{width: '80%', margin: '0 auto', textAlign: 'right'}}>
                             <RaisedButton label="Save changes"
+                                          onClick={this.handleClick}
                                           style={{marginRight: '20px'}}
                                           primary={true}/>
                             <Link to="/editors/spend_earn">Back to earn/spend Editor</Link>
                         </div>
                     </div>
+                    <Snackbar
+                        open={this.state.open}
+                        message="data successfully saved"
+                        autoHideDuration={2000}
+                        onRequestClose={this.handleRequestClose}
+                    />
                 </Paper>
             </div>
 
@@ -118,4 +150,4 @@ export default connect((state, props)=> {
     return {
         item: state.editors[props.match.params["earnSpendId"]]
     }
-})(EditorSpendEdit)
+}, {editorSpendEditRow})(EditorSpendEdit)

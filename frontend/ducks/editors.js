@@ -17,20 +17,26 @@ export const EDITOR_SPEND_DELETE_ROW = `${prefix}/EDITOR_SPEND_DELETE_ROW`
  * */
 
 
-export function editorSpendEditRow(id) {
+export function editorSpendDeleteRow(id) {
     return {
-        type: EDITOR_SPEND_EDIT_ROW,
+        type: EDITOR_SPEND_DELETE_ROW,
         payload: {
             id: id
         }
     }
 }
 
-export function editorSpendDeleteRow(id) {
+export function editorSpendEditRow(_id, type, amount, description, category, date) {
     return {
-        type: EDITOR_SPEND_DELETE_ROW,
+        type: EDITOR_SPEND_EDIT_ROW,
         payload: {
-            id: id
+            _id: _id,
+            type: type,
+            amount: amount,
+            description: description,
+            category: category,
+            date: date
+
         }
     }
 }
@@ -48,6 +54,12 @@ export default function reducer(editorsState = arrToMap(fixtures), action) {
             const tmpState = {...editorsState}
             delete tmpState[payload.id]
             return tmpState
+
+        case EDITOR_SPEND_EDIT_ROW:
+            return {
+                ...editorsState,
+                [payload._id]: payload
+            }
 
         default:
             return editorsState
