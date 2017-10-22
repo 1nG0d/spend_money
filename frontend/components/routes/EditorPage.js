@@ -2,7 +2,7 @@ import React from 'react'
 import {Route, Link} from 'react-router-dom'
 import EditorEarnSpend from '../editors/EditorEarnSpend'
 import EditorCategory from '../editors/EditorCategory'
-import EditorSpendAdd from '../editors/EditorSpendAdd'
+import EditorSpendAdd from '../editors/EditorSpendEdit'
 
 
 export default class EditorRoute extends React.Component {

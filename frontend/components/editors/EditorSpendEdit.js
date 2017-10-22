@@ -15,7 +15,7 @@ import {
     TableRowColumn,
 } from 'material-ui/Table';
 
-class EditorSpendAdd extends React.Component {
+class EditorSpendEdit extends React.Component {
 
     state =  {
       value: 1
@@ -90,10 +90,10 @@ class EditorSpendAdd extends React.Component {
     }
 }
 
-EditorSpendAdd.propTypes = {}
+EditorSpendEdit.propTypes = {}
 
 export default connect((state, props)=> {
     return {
         item: state.editors[props.match.params["earnSpendId"]]
     }
-})(EditorSpendAdd)
+})(EditorSpendEdit)
