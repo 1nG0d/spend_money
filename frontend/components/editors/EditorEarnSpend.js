@@ -1,5 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import {Link} from 'react-router-dom'
 import {
     Table,
     TableBody,
@@ -9,6 +10,7 @@ import {
     TableRowColumn,
 } from 'material-ui/Table';
 import RaisedButton from 'material-ui/RaisedButton';
+import Paper from 'material-ui/Paper';
 import {mapToArr} from '../../utils'
 import {editorSpendDeleteRow} from '../../ducks/editors'
 
@@ -25,7 +27,9 @@ class EditorEarnSpend extends React.Component {
                     <TableRowColumn style={{width: '20%'}}>{item.description}</TableRowColumn>
                     <TableRowColumn style={{width: '10%'}}>{item.category}</TableRowColumn>
                     <TableRowColumn style={{width: '10%'}}>
-                        <RaisedButton label="Edit" primary={true} />
+                        <Link to={`/editors/spend_earn/${item._id}`}>
+                            Edit
+                        </Link>
                     </TableRowColumn>
                     <TableRowColumn style={{width: '10%'}}>
                         <RaisedButton label="Delete"
@@ -39,7 +43,8 @@ class EditorEarnSpend extends React.Component {
 
     render() {
         return (
-            <Table style={{width: "80%", margin: '0 auto'}}>
+        <Paper style={{width: "80%", margin: '0 auto'}} zDepth={2} >
+            <Table>
                 <TableHeader displaySelectAll={false}
                              selectable={false}
                              adjustForCheckbox={false}>
@@ -58,6 +63,8 @@ class EditorEarnSpend extends React.Component {
                     {this.getTableRow()}
                 </TableBody>
             </Table>
+        </Paper>
+
         )
 
     }

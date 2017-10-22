@@ -2,6 +2,7 @@ import React from 'react'
 import {Route, Link} from 'react-router-dom'
 import EditorEarnSpend from '../editors/EditorEarnSpend'
 import EditorCategory from '../editors/EditorCategory'
+import EditorSpendAdd from '../editors/EditorSpendAdd'
 
 
 export default class EditorRoute extends React.Component {
@@ -22,8 +23,9 @@ export default class EditorRoute extends React.Component {
         return (
             <div>
                 {this.props.match.isExact ? this.getList() : null}
-                <Route path="/editors/spend_earn" component={EditorEarnSpend}/>
-                <Route path="/editors/category" component={EditorCategory}/>
+                <Route exact path="/editors/spend_earn" component={EditorEarnSpend}/>
+                <Route exact path="/editors/category" component={EditorCategory}/>
+                <Route path="/editors/spend_earn/:earnSpendId" component={EditorSpendAdd}/>
             </div>
         )
     }
