@@ -26,8 +26,8 @@ class EditorSpendEdit extends React.Component {
         return (
 
             <div>
-                <Paper style={{width: "80%", margin: '0 auto'}} zDepth={2} >
-                    <Table style={{width: "80%", margin: '0 auto'}}>
+                <Paper style={{width: "80%", margin: '30px auto', padding: '20px'}} zDepth={2} >
+                    <Table selectable={false}>
                         <TableHeader displaySelectAll={false}
                                      selectable={false}
                                      adjustForCheckbox={false}>

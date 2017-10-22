@@ -43,10 +43,9 @@ class EditorEarnSpend extends React.Component {
 
     render() {
         return (
-        <Paper style={{width: "80%", margin: '0 auto'}} zDepth={2} >
-            <Table>
+        <Paper style={{width: "80%", margin: '30px auto', padding: '20px'}} zDepth={2} >
+            <Table selectable={false}>
                 <TableHeader displaySelectAll={false}
-                             selectable={false}
                              adjustForCheckbox={false}>
                     <TableRow>
                         <TableHeaderColumn style={{width: '5%'}}>#</TableHeaderColumn>
