@@ -31,6 +31,3 @@ export default class EditorRoute extends React.Component {
     }
 }
 
-EditorRoute.propTypes = {
-
-}

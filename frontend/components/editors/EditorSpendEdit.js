@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import TextField from 'material-ui/TextField';
@@ -144,7 +145,16 @@ class EditorSpendEdit extends React.Component {
     }
 }
 
-EditorSpendEdit.propTypes = {}
+EditorSpendEdit.propTypes = {
+    item: PropTypes.shape({
+        _id: PropTypes.string,
+        type: PropTypes.string,
+        description: PropTypes.string,
+        amount: PropTypes.string,
+        category: PropTypes.string,
+        date: PropTypes.string
+    })
+};
 
 export default connect((state, props)=> {
     return {
