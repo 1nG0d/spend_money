@@ -6,7 +6,7 @@ class Root extends Component {
     static propTypes = {
 
     };
-        // Andrey, did you made this OPA by yourself ?
+        // Andrey, did you make this OPA by yourself ?
     render() {
         return (
             <div>
